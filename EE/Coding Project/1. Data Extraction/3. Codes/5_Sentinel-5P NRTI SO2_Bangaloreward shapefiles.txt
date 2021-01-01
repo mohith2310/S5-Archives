@@ -1,0 +1,33 @@
+var table: Table users/avinash_b180409cs/Delhi_wards
+var state = ee.FeatureCollection(table);
+
+Map.centerObject(state);
+Map.addLayer(state,{color:'red'});
+
+var dataset = "COPERNICUS/S5P/NRTI/L3_SO2";
+var attribute="SO2_column_number_density_amf";
+var collection = ee.ImageCollection(dataset)
+                  .select(attribute);
+print(collection.size());
+
+function getRegions(Icol, features) {
+  return Icol.map(function(image){
+    var means = image.reduceRegions({
+      reducer: ee.Reducer.mean(),
+      collection: features,
+      scale: 10
+    }).filter(ee.Filter.notNull(["mean"]))
+    .map(function(f) {
+      return f.set('date', image.date().format("YYYY-MM-dd"));
+    });
+    return means;
+  }).flatten();
+}
+
+var ts_table = getRegions(collection.select(attribute), state);
+print(ts_table);
+Export.table.toDrive({
+  collection: ts_table,
+  description: "Delhi-wards",
+  fileFormat: 'CSV'
+});

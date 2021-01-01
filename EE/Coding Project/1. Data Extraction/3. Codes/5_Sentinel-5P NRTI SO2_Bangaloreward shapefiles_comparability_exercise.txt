@@ -1,0 +1,37 @@
+var table : Table users/avinash08jan2001/test ;
+
+var month_mean = ee.List.sequence(0, 26, 3).map(function(n) { 
+  var start = ee.Date('2018-07-10').advance(n, 'month');
+  var end = start.advance(3, 'month'); 
+  return ee.ImageCollection("COPERNICUS/S5P/NRTI/L3_SO2")
+        .filterDate(start, end)
+        .mean()
+        .set('system:time_start', start.millis());
+});
+print(month_mean); 
+
+var collection = ee.ImageCollection(month_mean);
+print(collection);
+
+function getRegions(Icol, features) {
+  return Icol.map(function(image){
+    var means = image.reduceRegions({
+      reducer: ee.Reducer.mean(),
+      collection: features,
+      scale: 10
+    }).filter(ee.Filter.notNull(['mean']))
+    .map(function(f) {
+      return f.set('date', image.date().format("YYYY-MM-dd"))
+    })
+    return means
+  }).flatten()
+}
+
+var state = ee.FeatureCollection(table);
+var ts_table = getRegions(collection.select('SO2_column_number_density_amf'), state);
+print(ts_table)
+Export.table.toDrive({
+  collection: ts_table,
+  description: 'Bangalore_wards_git',
+  fileFormat: 'CSV'
+});

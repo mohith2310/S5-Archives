@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* background: linear-gradient(135deg, rgb(8, 47, 163)0%, rgb(250, 43, 87) 100%); */
+    background: linear-gradient(135deg, #fcf8ec 100%, rgb(250, 43, 87) 100%);
+    /* background: #555; */
+    height: 110vh;
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    color: #222;
+}
+
+
+/*navigation*/
+
+.navbar {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem;
+    background-color: #5CD49F;
+    overflow: hidden;
+}
+
+
+/*brand could be name or image*/
+
+.brand img {
+    width: 60px;
+    height: 60px;
+}
+
+.navbar .nav-list {
+    padding: 2rem 0;
+    list-style-type: none;
+    text-align: center;
+    overflow: hidden;
+}
+
+.nav-list li {
+    margin: 1rem 0;
+    letter-spacing: 0.1rem;
+}
+
+.nav-list li a {
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.4rem;
+    color: #fcf8ec;
+    font-size: medium;
+    font-weight: 100;
+}
+
+
+/*toggler button*/
+
+.navbar .toggler {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    outline: none;
+}
+
+
+/*hamburger*/
+
+.toggler .line {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #222;
+    margin-bottom: 0.4rem;
+    /*from hamburger to cross*/
+    transition: 0.4s;
+}
+
+img {
+    height: 400px;
+    position: relative;
+    margin: 100px 100px;
+}
+
+.content .input-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 0px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.content .input-div.one {
+    margin-top: auto;
+    padding-left: 25px;
+}
+
+.myH2 {
+    /* margin: 100px 50px 350px 00px; */
+    margin-top: 200px;
+    margin-bottom: 50px;
+    margin-right: 60px;
+    text-transform: uppercase;
+    font-size: 2.9rem;
+    position: relative;
+}
+
+.mybtn {
+    display: block;
+    width: 50%;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    background-size: 200%;
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 1rem 8rem;
+    cursor: pointer;
+    transition: .5s;
+    padding-left: 25px;
+}
+
+.mybtn:hover {
+    background-position: right;
+}
+
+.heading {
+    width: 100vw;
+    height: 65vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7rem;
+    padding: 0 2rem;
+}
+
+
+/*close icon*/
+
+.cross .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.cross .line:nth-child(2) {
+    opacity: 0;
+}
+
+.cross .line:nth-child(3) {
+    transform: rotate(45deg) translate(-7px, -5px);
+}
+
+
+/*only for mobile and tablets devices*/
+
+@media (max-width: 767px) {
+    /*hide nav by transform*/
+    .nav-list-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: inherit;
+        z-index: 2;
+        transform: translateX(-100%);
+        /*nav sidebar speed*/
+        transition: all 0.5s linear;
+        opacity: 0.5;
+    }
+}
+
+
+/*make nav visible by transform*/
+
+.nav-active {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+
+/*navigation for tablet and desktops*/
+
+@media (min-width: 768px) {
+    .navbar {
+        justify-content: space-around;
+        padding: 0.4rem 0;
+    }
+    /*make nav-list horizontal on big screens*/
+    .navbar .nav-list {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+    }
+    .nav-list li {
+        margin: 0 0.4rem;
+    }
+    /*hide toggler button on big screens*/
+    .navbar .toggler {
+        display: none;
+    }
+}
+
+main {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 3rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Button used to open the chat form - fixed at the bottom of the page */
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+
+/* The popup chat - hidden by default */
+
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 80px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+
+/* Add styles to the form container */
+
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+
+/* Full-width textarea */
+
+.form-container textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+}
+
+
+/* When the textarea gets focus, do something */
+
+.form-container textarea:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+
+/* Set a style for the submit/send button */
+
+.form-container .btn {
+    background-color: #5CD49F;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+
+/* Add a red background color to the cancel button */
+
+.form-container .cancel {
+    background-color: red;
+}
+
+
+/* Add some hover effects to buttons */
+
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+.chat {
+    display: flex;
+    position: relative;
+}
+
+.background {
+    background-color: #5CD49F;
+    border-radius: 50%;
+    box-shadow: 0 2.1px 1.3px rgba(0, 0, 0, 0.044), 0 5.9px 4.2px rgba(0, 0, 0, 0.054), 0 12.6px 9.5px rgba(0, 0, 0, 0.061), 0 25px 20px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    position: absolute;
+    top: 90px;
+    /* bottom: 15px; */
+    width: 50px;
+    right: 10px;
+}
+
+.chat-bubble {
+    cursor: pointer;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 90px;
+    /* bottom: 15px; */
+    right: 10px;
+}
+
+.bubble {
+    transform-origin: 50%;
+    transition: transform 500ms cubic-bezier(0.17, 0.61, 0.54, 0.9);
+}
+
+.line {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.75;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+    stroke-dasharray: 60 90;
+    stroke-dashoffset: -20;
+}
+
+.line2 {
+    stroke-dasharray: 67 87;
+    stroke-dashoffset: -18;
+}
+
+.circle {
+    fill: #ffffff;
+    stroke: none;
+    transform-origin: 50%;
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.active .bubble {
+    transform: translateX(24px) translateY(4px) rotate(45deg);
+}
+
+.active .line1 {
+    stroke-dashoffset: 21;
+}
+
+.active .line2 {
+    stroke-dashoffset: 30;
+}
+
+.active .circle {
+    transform: scale(0);
+}
